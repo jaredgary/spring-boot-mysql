@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  spring-mysql:    
+    container_name: spring-mysql
+    image: jaredgary/spring-mysql
+    restart: always
+    ports:
+      - '9000:9000'
+    networks:
+      - n1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+networks:
+  n1:
