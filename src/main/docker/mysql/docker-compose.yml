@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  mysqldb:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - n1
+      
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - n1
+       
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq
+    restart: always
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "4369:4369"
+      - "25672:25672"
+    networks:
+      - n1
+        
+volumes:
+  db-data:
+  
+networks:
+  n1:
+    driver: bridge
