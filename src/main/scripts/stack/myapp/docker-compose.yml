@@ -1,0 +1,21 @@
+version: '3'
+
+services:  
+  spring-mysql:
+    image: jaredgary/spring-mysql
+    ports:
+      - '9001:9001'
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://18.222.165.109:3306/example?autoReconnect=true&useSSL=false'
+      SPRING_PROFILES_ACTIVE: 'prod'
+    networks:
+      - database_net
+      - rabbit_net   
+    deploy:
+      replicas: 3
+    
+networks:
+  rabbit_net:
+    driver: overlay
+  database_net:
+    driver: overlay
