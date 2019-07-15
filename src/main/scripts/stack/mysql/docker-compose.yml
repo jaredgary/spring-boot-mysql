@@ -26,24 +26,10 @@ services:
       - database_net
     deploy:
       replicas: 1
-       
-  rabbitmq:
-    image: rabbitmq
-    ports:
-      - "5671:5671"
-      - "5672:5672"
-      - "4369:4369"
-      - "25672:25672"
-    networks:
-      - rabbit_net
-    deploy:
-      replicas: 1
     
 volumes:
   db-data:
   
 networks:
-  rabbit_net:
-    driver: overlay
   database_net:
     driver: overlay
