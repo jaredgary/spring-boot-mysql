@@ -26,24 +26,10 @@ services:
       - mysqldb
     networks:
       - database_net
-       
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq
-    restart: always
-    ports:
-      - "5671:5671"
-      - "5672:5672"
-      - "4369:4369"
-      - "25672:25672"
-    networks:
-      - rabbit_net  
         
 volumes:
   db-data:
   
 networks:
-  rabbit_net:
-    driver: bridge
   database_net:
     driver: bridge
